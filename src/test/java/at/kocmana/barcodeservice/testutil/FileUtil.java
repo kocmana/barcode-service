@@ -1,10 +1,12 @@
 package at.kocmana.barcodeservice.testutil;
 
+import java.io.ByteArrayOutputStream;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class FileUtil {
@@ -24,6 +26,8 @@ public class FileUtil {
     } catch (IOException exception) {
       fail(exception.getMessage());
     }
+    requireNonNull(image);
     return image;
   }
+
 }
