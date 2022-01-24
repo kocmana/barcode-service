@@ -3,10 +3,8 @@ package at.kocmana.barcodeservice.ean;
 import static at.kocmana.barcodeservice.testutil.FileUtil.readBufferedImageFromFile;
 import static at.kocmana.barcodeservice.testutil.ImageUtil.compareImages;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import at.kocmana.barcodeservice.ean.model.Ean13;
-import java.awt.image.BufferedImage;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
