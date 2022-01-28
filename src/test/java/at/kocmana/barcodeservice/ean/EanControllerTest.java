@@ -49,11 +49,9 @@ class EanControllerTest {
     var barcode = "hans";
 
     //when
-    var result = mockMvc.perform(get("/ean13/" + barcode))
+    mockMvc.perform(get("/ean13/" + barcode))
         .andExpect(status().isBadRequest())
         .andReturn().getResponse().getContentAsString();
-
-    System.out.println(result);
   }
 
 

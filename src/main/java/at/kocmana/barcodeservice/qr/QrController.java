@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +19,8 @@ public class QrController {
     this.qrService = qrService;
   }
 
-  @GetMapping("/qr/{payload}")
-  public ResponseEntity<BufferedImage> generateQrCode(@PathVariable("payload") Qr request) {
+  @GetMapping("/qr")
+  public ResponseEntity<BufferedImage> generateQrCode(@RequestBody Qr request) {
 
     var image = qrService.generateQrCode(request);
 

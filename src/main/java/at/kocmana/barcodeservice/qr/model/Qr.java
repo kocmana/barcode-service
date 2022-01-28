@@ -7,7 +7,7 @@ public record Qr(String payload) {
   private static final int MAX_PAYLOAD_LENGTH = 4296;
 
   public Qr {
-    if (isNull(payload()) && payload.isBlank()) {
+    if (isNull(payload) || payload.isBlank()) {
       throw new IllegalArgumentException("Provided payload for QR generation is null or blank.");
     }
 
