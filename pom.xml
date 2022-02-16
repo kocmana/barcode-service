@@ -23,6 +23,13 @@
         <zxing.version>3.4.1</zxing.version>
         <barcode4j.version>2.1</barcode4j.version>
         <barbecue.version>1.5-beta1</barbecue.version>
+
+        <!-- Dockerization via JIB -->
+        <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
+        <docker.image>registry://gcr.io/distroless/java17</docker.image>
+        <docker.image.checksum>sha256:b20d5a0a530aff878ecc1622bafcb52fb358a9c0ee0e51c3fd7f894d7fd51d9b
+        </docker.image.checksum>
+        <docker.container.port>8080</docker.container.port>
     </properties>
 
     <dependencies>
@@ -44,6 +51,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Caching -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
         <!-- Barcode/QR Code Generation -->
@@ -81,6 +94,34 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Containerization via JIB -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>${docker.image}@${docker.image.checksum}</image>
+                    </from>
+                    <container>
+                        <ports>
+                            <port>${docker.container.port}</port>
+                        </ports>
+                        <environment>
+                            <SPRING_PROFILES_ACTIVE>docker</SPRING_PROFILES_ACTIVE>
+                        </environment>
+                    </container>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
