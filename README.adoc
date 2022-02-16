@@ -1,0 +1,85 @@
+:toc: marcro
+:toclevels: 3
+:toc-title: Table of Contents
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :point_right:
+:important-caption: :loudspeaker:
+:caution-caption: :rotating_light:
+:warning-caption: :warning:
+endif::[]
+
+= Barcode Service
+
+image:https://github.com/kocmana/barcode-service/actions/workflows/maven.yml/badge.svg[]
+
+toc::[]
+
+== About the Project
+The aim of this project is to provide an easily deployable service for the rendering different types of barcodes. The idea for such a thin wrapper service for barcode libraries was based on a Baeldung tutorial available https://www.baeldung.com/java-generating-barcodes-qr-codes[here].
+
+The current service supports the following barcode types:
+
+* EAN 8
+* EAN 13
+* QR Codes
+
+== Stack
+
+The solution is based on the following stack:
+
+* Java 17
+* Spring Boot 2.6.3
+* JIB for creation of the docker images
+* Barcode Creation Libraries
+** http://barbecue.sourceforge.net/[Barbeque]
+** http://barcode4j.sourceforge.net/[Barcode4J]
+** https://github.com/zxing/zxing[Zxing]
+
+== Getting Started
+
+=== Prerequisites
+
+This project requires
+
+* Java Version 17
+* Maven
+* A local docker daemon such as a docker client or access to a remote docker image repository
+
+== How To Use
+. Clone the repository
++
+----
+git clone https://github.com/kocmana/barcode-service.git
+----
+. Compile and package the application into a docker image
+.. To add the image to a local docker daemon use
++
+----
+mvn clean compile jib:dockerBuild
+----
+.. To add the image to a remote repository use
++
+----
+mvn clean jib:build -Dimage=DestinationOfYourImage
+----
+. Run the docker image either locally or deploy
+
+=== Modularization
+In case that barcode generation is only required for a subset of the offered barcodes, packages containing not required barcodes can be deleted prior to deployment without affecting any other barcode generation functionality.
+
+If e.g. only QR code generation is required, the `ean` package can be deleted altogether before compilation of the service as described above.
+
+=== Caching
+Currently, the project is set to use Caffeine as the technical basis for caching. If cross-instance caching is required for multiple deployed instances of the service, this can easily be done by configuring alternative solutions like Redis in the `application-docker.yml` (for additional information see https://docs.spring.io/spring-boot/docs/2.6.3/reference/htmlsingle/#io.caching.provider[here].
+
+=== Security
+Security of the exposed endpoints is not considered part of the responsibilities of this application, since the actual requirements may differ widely depending on the actual deployment environment and service landscape.
+
+If auth is not handled by the service mesh or by using any external solution, Spring Security can be added easily and configured to the specific requirements.
+
+WARNING: If no additional precautions are taken, all endpoints are publicly available if deployed as is.
+
+== Sources
+* https://www.baeldung.com/java-generating-barcodes-qr-codes
