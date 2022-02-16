@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "d39e7c87-f6e7-41e4-a45f-014b9925e8cd",
+		"name": "Barcode Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EAN",
+			"item": [
+				{
+					"name": "EAN-13",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/ean13/:barcode",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"ean13",
+								":barcode"
+							],
+							"variable": [
+								{
+									"key": "barcode",
+									"value": "123456789012"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EAN-8",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/ean8/:barcode",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"ean8",
+								":barcode"
+							],
+							"variable": [
+								{
+									"key": "barcode",
+									"value": "1234567"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QR",
+			"item": [
+				{
+					"name": "QR Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payload\": \"Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service-host}}/qr",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"qr"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Health Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/actuator/health",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/actuator/prometheus",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
