@@ -1,4 +1,4 @@
-:toc: marcro
+:toc: macro
 :toclevels: 3
 :toc-title: Table of Contents
 
