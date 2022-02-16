@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: barcode-service
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+
+server:
+  shutdown: graceful
+  port: 8080
