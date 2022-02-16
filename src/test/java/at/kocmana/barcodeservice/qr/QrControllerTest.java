@@ -4,7 +4,7 @@ import static at.kocmana.barcodeservice.testutil.FileUtil.readBufferedImageFromF
 import static at.kocmana.barcodeservice.testutil.ImageUtil.toByteArray;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +37,7 @@ class QrControllerTest {
     when(service.generateQrCode(request)).thenReturn(requestedQrCode);
 
     //when
-    mockMvc.perform(get("/qr")
+    mockMvc.perform(post("/qr")
             .contentType(MediaType.APPLICATION_JSON)
             .content("{\"payload\": \"" + payload + "\"}"))
         .andExpect(status().isOk())
@@ -51,7 +51,7 @@ class QrControllerTest {
     var payload = "    ";
 
     //when
-    mockMvc.perform(get("/qr")
+    mockMvc.perform(post("/qr")
             .contentType(MediaType.APPLICATION_JSON)
             .content("{\"payload\": \"" + payload + "\"}"))
         .andExpect(status().isBadRequest())
