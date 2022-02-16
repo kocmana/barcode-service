@@ -1,6 +1,9 @@
 spring:
   application:
     name: barcode-service
+  cache:
+    caffeine:
+      spec: maximumSize=10000,expireAfterAccess=365d
 
 management:
   endpoints:
