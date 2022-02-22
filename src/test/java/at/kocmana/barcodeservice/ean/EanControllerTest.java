@@ -33,7 +33,7 @@ class EanControllerTest {
     //given
     var barcode = "123456789012";
     var requestedBarcode = new Ean13(barcode);
-    var image = readBufferedImageFromFile("test-ean13.jpg");
+    var image = readBufferedImageFromFile("ean/test-ean13.jpg");
     when(service.generateEan13(requestedBarcode)).thenReturn(image);
 
     //when
@@ -60,7 +60,7 @@ class EanControllerTest {
     //given
     var barcode = "1234567";
     var requestedBarcode = new Ean8(barcode);
-    var image = readBufferedImageFromFile("test-ean8.jpg");
+    var image = readBufferedImageFromFile("ean/test-ean8.jpg");
     when(service.generateEan8(requestedBarcode)).thenReturn(image);
 
     //when

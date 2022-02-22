@@ -33,7 +33,7 @@ class QrControllerTest {
     //given
     var payload = "some payload";
     var request = new Qr(payload);
-    var requestedQrCode = readBufferedImageFromFile("test-qr.jpg");
+    var requestedQrCode = readBufferedImageFromFile("qr/test-qr.jpg");
     when(service.generateQrCode(request)).thenReturn(requestedQrCode);
 
     //when

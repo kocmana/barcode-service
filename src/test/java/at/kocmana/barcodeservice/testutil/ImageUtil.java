@@ -22,17 +22,17 @@ public class ImageUtil {
     return byteArrayOutputStream.toByteArray();
   }
 
-  public static boolean compareImages(BufferedImage imgA, BufferedImage imgB) {
-   if (imgA.getWidth() != imgB.getWidth() || imgA.getHeight() != imgB.getHeight()) {
+  public static boolean compareImages(BufferedImage imageA, BufferedImage imageB) {
+   if (imageA.getWidth() != imageB.getWidth() || imageA.getHeight() != imageB.getHeight()) {
       return false;
     }
 
-    int width  = imgA.getWidth();
-    int height = imgA.getHeight();
+    int width  = imageA.getWidth();
+    int height = imageA.getHeight();
 
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
-        if (imgA.getRGB(x, y) != imgB.getRGB(x, y)) {
+        if (imageA.getRGB(x, y) != imageB.getRGB(x, y)) {
           return false;
         }
       }
