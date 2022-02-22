@@ -129,6 +129,59 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "UPC",
+			"item": [
+				{
+					"name": "UPC-A",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/upca/:barcode",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"upca",
+								":barcode"
+							],
+							"variable": [
+								{
+									"key": "barcode",
+									"value": "12345678901"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPC-E",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{service-host}}/upce/:barcode",
+							"host": [
+								"{{service-host}}"
+							],
+							"path": [
+								"upce",
+								":barcode"
+							],
+							"variable": [
+								{
+									"key": "barcode",
+									"value": "1234567"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
