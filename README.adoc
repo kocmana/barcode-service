@@ -24,6 +24,8 @@ The current service supports the following barcode types:
 * EAN 8
 * EAN 13
 * QR Codes
+* UPC A
+* UPC E
 
 == Stack
 
